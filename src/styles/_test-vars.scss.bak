@@ -1,0 +1,11 @@
+// Test file to verify SCSS variables are working
+// This uses the same variables as index.scss to ensure compatibility
+
+.test-vars {
+  font-family: $sam-font-family;
+  color: sam-color('text-primary');
+  background: sam-color('background');
+  font-size: sam-font-size('base');
+  border-radius: sam-radius('base');
+  padding: sam-spacing('md');
+}

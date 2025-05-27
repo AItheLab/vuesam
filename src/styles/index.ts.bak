@@ -1,0 +1,4 @@
+// Vue SAM Styles Export
+// Import this file to get all Vue SAM styles
+
+export { default } from './index.scss'

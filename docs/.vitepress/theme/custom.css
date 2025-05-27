@@ -1,0 +1,61 @@
+/* Custom styles for Vue SAM documentation */
+
+:root {
+  --vp-c-brand-1: #3b82f6;
+  --vp-c-brand-2: #60a5fa;
+  --vp-c-brand-3: #2563eb;
+  --vp-c-brand-soft: rgba(59, 130, 246, 0.14);
+}
+
+.dark {
+  --vp-c-bg: #1a1a1a;
+  --vp-c-bg-soft: #262626;
+  --vp-c-bg-mute: #404040;
+}
+
+/* Demo block styles */
+.demo-block {
+  margin: 1.5rem 0;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.demo-block__preview {
+  padding: 2rem;
+  background-color: var(--vp-c-bg-soft);
+}
+
+.demo-block__code {
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.demo-block__actions {
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem;
+  border-top: 1px solid var(--vp-c-divider);
+  background-color: var(--vp-c-bg-soft);
+}
+
+.demo-block__action {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+  transition: color 0.25s;
+}
+
+.demo-block__action:hover {
+  color: var(--vp-c-brand-1);
+}
+
+/* Component preview adjustments */
+.vp-doc .demo-block__preview > * + * {
+  margin-top: 1rem;
+}
+
+/* Ensure proper button styling in demos */
+.vp-doc .sam-button {
+  margin: 0;
+}

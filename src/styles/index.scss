@@ -1,0 +1,74 @@
+// Main styles for Vue SAM
+// Las importaciones de variables y mixins ahora vendrán
+// del _globals.scss inyectado por additionalData.
+
+// Reset and base styles
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $sam-font-family;
+  font-size: sam-font-size('base');
+  line-height: map-get($sam-line-heights, 'normal');
+  color: sam-color('text-primary');
+  background-color: sam-color('background');
+}
+
+// Focus styles
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid sam-color('primary');
+  outline-offset: 2px;
+}
+
+// Scrollbar styles for dark theme
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: sam-color('background-secondary');
+}
+
+::-webkit-scrollbar-thumb {
+  background: sam-color('border');
+  border-radius: sam-radius('sm');
+  
+  &:hover {
+    background: sam-color('border-light');
+  }
+}
+
+// Selection
+::selection {
+  background-color: sam-color('primary');
+  color: white;
+}
+
+// Global utility classes
+.sam-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

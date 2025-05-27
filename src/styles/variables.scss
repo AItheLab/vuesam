@@ -1,0 +1,202 @@
+// Design System Variables based on the dark theme
+// Colors
+$sam-colors: (
+  // Primary colors
+  'primary': #3b82f6,
+  'primary-light': #60a5fa,
+  'primary-dark': #2563eb,
+  
+  // Secondary colors  
+  'secondary': #8b5cf6,
+  'secondary-light': #a78bfa,
+  'secondary-dark': #7c3aed,
+  
+  // Status colors
+  'success': #10b981,
+  'success-light': #34d399,
+  'success-dark': #059669,
+  
+  'warning': #f59e0b,
+  'warning-light': #fbbf24,
+  'warning-dark': #d97706,
+  
+  'error': #ef4444,
+  'error-light': #f87171,
+  'error-dark': #dc2626,
+  
+  'info': #3b82f6,
+  'info-light': #60a5fa,
+  'info-dark': #2563eb,
+  
+  // Neutral colors (dark theme)
+  'background': #1a1a1a,
+  'background-secondary': #262626,
+  'background-tertiary': #404040,
+  
+  'surface': #262626,
+  'surface-variant': #404040,
+  
+  'text-primary': #f3f4f6,
+  'text-secondary': #9ca3af,
+  'text-disabled': #6b7280,
+  'text-hint': #4b5563,
+  
+  'border': #374151,
+  'border-light': #4b5563,
+  'border-dark': #1f2937,
+  
+  'divider': #374151,
+  
+  // Special colors from the design
+  'accent-orange': #fb923c,
+  'accent-green': #22c55e,
+  'accent-purple': #a855f7,
+  'accent-pink': #ec4899,
+  'accent-yellow': #facc15,
+);
+
+// Spacing
+$sam-spacing: (
+  'xxs': 4px,
+  'xs': 8px,
+  'sm': 12px,
+  'md': 16px,
+  'lg': 24px,
+  'xl': 32px,
+  'xxl': 48px,
+  'xxxl': 64px,
+);
+
+// Typography
+$sam-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$sam-font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+
+$sam-font-sizes: (
+  'xs': 12px,
+  'sm': 14px,
+  'base': 16px,
+  'lg': 18px,
+  'xl': 20px,
+  '2xl': 24px,
+  '3xl': 30px,
+  '4xl': 36px,
+  '5xl': 48px,
+);
+
+$sam-font-weights: (
+  'light': 300,
+  'regular': 400,
+  'medium': 500,
+  'semibold': 600,
+  'bold': 700,
+);
+
+$sam-line-heights: (
+  'tight': 1.25,
+  'snug': 1.375,
+  'normal': 1.5,
+  'relaxed': 1.625,
+  'loose': 2,
+);
+
+// Border radius
+$sam-radius: (
+  'none': 0,
+  'sm': 4px,
+  'base': 8px,
+  'md': 12px,
+  'lg': 16px,
+  'xl': 24px,
+  'full': 9999px,
+);
+
+// Shadows (adapted for dark theme)
+$sam-shadows: (
+  'none': none,
+  'sm': '0 1px 2px 0 rgba(0, 0, 0, 0.5)',
+  'base': '0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px 0 rgba(0, 0, 0, 0.4)',
+  'md': '0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4)',
+  'lg': '0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4)',
+  'xl': '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4)',
+  '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.6)',
+);
+
+// Z-index
+$sam-z-index: (
+  'deep': -999999,
+  'default': 1,
+  'dropdown': 1000,
+  'sticky': 1020,
+  'fixed': 1030,
+  'modal-backdrop': 1040,
+  'modal': 1050,
+  'popover': 1060,
+  'tooltip': 1070,
+);
+
+// Transitions
+$sam-transitions: (
+  'fast': 150ms,
+  'base': 250ms,
+  'slow': 350ms,
+  'slower': 500ms,
+);
+
+// Breakpoints
+$sam-breakpoints: (
+  'xs': 0,
+  'sm': 640px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  '2xl': 1536px,
+);
+
+// Helper functions
+@function sam-color($name) {
+  @return map-get($sam-colors, $name);
+}
+
+@function sam-spacing($name) {
+  @return map-get($sam-spacing, $name);
+}
+
+@function sam-font-size($name) {
+  @return map-get($sam-font-sizes, $name);
+}
+
+@function sam-radius($name) {
+  @return map-get($sam-radius, $name);
+}
+
+@function sam-shadow($name) {
+  @return map-get($sam-shadows, $name);
+}
+
+// CSS Custom Properties
+:root {
+  // Colors
+  @each $name, $value in $sam-colors {
+    --sam-color-#{$name}: #{$value};
+  }
+  
+  // Spacing
+  @each $name, $value in $sam-spacing {
+    --sam-spacing-#{$name}: #{$value};
+  }
+  
+  // Font sizes
+  @each $name, $value in $sam-font-sizes {
+    --sam-font-size-#{$name}: #{$value};
+  }
+  
+  // Border radius
+  @each $name, $value in $sam-radius {
+    --sam-radius-#{$name}: #{$value};
+  }
+  
+  // Transitions
+  @each $name, $value in $sam-transitions {
+    --sam-transition-#{$name}: #{$value};
+  }
+}
