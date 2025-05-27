@@ -162,6 +162,9 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
 .sam-text-field {
   @include sam-component;
   position: relative;

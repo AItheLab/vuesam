@@ -8,9 +8,9 @@
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/vue-sam.es.js",
-      "require": "./dist/vue-sam.umd.js",
-      "types": "./dist/types/index.d.ts"
+      "require": "./dist/vue-sam.umd.js"
     },
     "./styles": "./dist/style.css"
   },
@@ -28,6 +28,8 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
+    "storybook:dev": "storybook dev -p 6006",
+    "storybook:build": "storybook build",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
@@ -39,6 +41,13 @@
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.6.1",
+    "@storybook/addon-essentials": "^8.0.4",
+    "@storybook/addon-interactions": "^8.0.4",
+    "@storybook/addon-links": "^8.0.4",
+    "@storybook/blocks": "^8.0.4",
+    "@storybook/test": "^8.0.4",
+    "@storybook/vue3": "^8.0.4",
+    "@storybook/vue3-vite": "^8.0.4",
     "@tsconfig/node20": "^20.1.2",
     "@types/node": "^20.11.5",
     "@vitejs/plugin-vue": "^5.0.3",
@@ -52,7 +61,8 @@
     "eslint-plugin-vue": "^9.20.1",
     "happy-dom": "^13.3.1",
     "prettier": "^3.2.4",
-    "sass": "^1.70.0",
+    "sass": "^1.77.8",
+    "storybook": "^8.0.4",
     "typescript": "~5.3.3",
     "vite": "^5.0.11",
     "vite-plugin-dts": "^3.7.1",

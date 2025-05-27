@@ -107,7 +107,7 @@ cd vue-sam
 pnpm install
 ```
 
-#### **Two Development Modes Available:**
+#### **Tres Modos de Desarrollo Disponibles:**
 
 **🎮 Playground Mode** (Interactive component testing)
 ```bash
@@ -123,6 +123,13 @@ pnpm docs:dev
 # Full VitePress documentation with API reference
 ```
 
+**🔬 Storybook Mode** (Isolated component development)
+```bash
+pnpm storybook:dev
+# → http://localhost:6006
+# Component stories with interactive controls
+```
+
 #### **Other Commands:**
 ```bash
 # Run tests
@@ -133,11 +140,16 @@ pnpm build
 
 # Build documentation
 pnpm docs:build
+
+# Build Storybook
+pnpm storybook:build
 ```
 
-> 💡 **Pro Tip**: Run both modes simultaneously in different terminals for the best development experience!
+> 💡 **Pro Tip**: Run multiple modes simultaneously in different terminals for the best development experience!
 
-📖 **Read the complete guide**: [PLAYGROUND-DOCS-GUIDE.md](./PLAYGROUND-DOCS-GUIDE.md)
+📖 **Read the complete guides**: 
+- [PLAYGROUND-DOCS-GUIDE.md](./PLAYGROUND-DOCS-GUIDE.md) - Playground vs Documentation
+- [STORYBOOK_GUIDE.md](./STORYBOOK_GUIDE.md) - Storybook usage and best practices
 
 ### Project Structure
 

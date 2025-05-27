@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { nextTick } from 'vue'
 import SamTextField from '@/components/text-field/SamTextField.vue'
 
 describe('SamTextField', () => {

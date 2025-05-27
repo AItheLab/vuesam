@@ -1,2 +1,2 @@
-@import '../styles/variables.scss';
-@import '../styles/mixins.scss';
+@use './variables.scss' as *;
+@use './mixins.scss' as *;

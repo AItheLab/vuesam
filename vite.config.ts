@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => {
         preprocessorOptions: {
           scss: {
             additionalData: scssAdditionalData,
-            includePaths: [resolve(__dirname, 'src')]
+            api: 'modern-compiler' // Use the modern Sass API
           },
         },
       },
@@ -71,7 +71,7 @@ export default defineConfig(({ mode }) => {
     preprocessorOptions: {
       scss: {
         additionalData: scssAdditionalData,
-        includePaths: [resolve(__dirname, 'src')]
+        api: 'modern-compiler' // Use the modern Sass API
       },
     },
   },

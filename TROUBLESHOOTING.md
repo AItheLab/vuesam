@@ -1,5 +1,156 @@
 # 🛠️ Troubleshooting - Vue SAM
 
+## ❌ Error: "Storybook Preview Module Failed to Fetch"
+
+### Problema
+```bash
+TypeError: Failed to fetch dynamically imported module: http://localhost:6006/.storybook/preview.ts
+```
+
+### ✅ Solución Aplicada
+
+**Causa**: Importación directa de SCSS en preview.ts causaba conflictos con configuración de main.ts.
+
+#### 1. **CSS Simple para Preview**
+```typescript
+// .storybook/preview.ts
+import './storybook-base.css'  // ← CSS simple sin conflictos
+```
+
+#### 2. **Archivo CSS Base Creado**
+```css
+/* .storybook/storybook-base.css */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #1a1a1a;
+  color: #f3f4f6;
+}
+```
+
+#### 3. **SCSS Mantenido en main.ts**
+```typescript
+// Los componentes siguen teniendo acceso a variables SCSS
+config.css.preprocessorOptions.scss = {
+  additionalData: '@import "src/styles/_globals.scss";'
+}
+```
+
+### 🔄 **Aplicar Cambios**
+```bash
+Ctrl+C                    # Detener Storybook
+yarn storybook:dev        # ✅ Sin errores de preview
+```
+
+📚 **Guía detallada**: [STORYBOOK-PREVIEW-FIX.md](./STORYBOOK-PREVIEW-FIX.md)
+
+---
+
+## ❌ Error: "Storybook SCSS Path Resolution"
+
+### Problema
+```bash
+[sass] Can't find stylesheet to import.
+@import "styles/_globals.scss";
+```
+
+### ✅ Solución Aplicada
+
+**Causa**: Storybook ejecuta desde contexto diferente al playground, necesita paths ajustados.
+
+#### 1. **Configuración de Storybook ajustada**
+```typescript
+// .storybook/main.ts
+config.css.preprocessorOptions.scss = {
+  additionalData: '@import "src/styles/_globals.scss";', // ← Ruta ajustada
+  api: 'modern-compiler',
+  includePaths: [resolve(__dirname, '../')] // ← Añadido includePaths
+}
+```
+
+#### 2. **Package.json Export Conditions**
+```json
+{
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts", // ← Primero
+      "import": "./dist/vue-sam.es.js",
+      "require": "./dist/vue-sam.umd.js"
+    }
+  }
+}
+```
+
+#### 3. **Migración a @use (elimina deprecation warnings)**
+```scss
+// src/styles/_globals.scss
+@use '../styles/variables.scss' as *;
+@use '../styles/mixins.scss' as *;
+```
+
+### 🔄 **Aplicar Cambios**
+```bash
+Ctrl+C                    # Detener Storybook
+yarn storybook:dev        # ✅ Sin errores
+```
+
+📚 **Guía detallada**: [STORYBOOK-SCSS-FIX.md](./STORYBOOK-SCSS-FIX.md)
+
+---
+
+## ❌ Warning: "Sass Legacy JS API" (Deprecation)
+
+### Problema
+```bash
+Deprecation Warning [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
+More info: https://sass-lang.com/d/legacy-js-api
+```
+
+### ✅ Solución Aplicada
+
+**Causa**: Vite usaba por defecto la legacy JS API de Sass que será removida.
+
+#### 1. **API Moderna en vite.config.ts**
+```typescript
+css: {
+  preprocessorOptions: {
+    scss: {
+      additionalData: scssAdditionalData,
+      api: 'modern-compiler' // ← Usa API moderna
+    },
+  },
+}
+```
+
+#### 2. **API Moderna en VitePress Config**
+```typescript
+vite: {
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: scssData,
+        api: 'modern-compiler' // ← Elimina warnings
+      },
+    },
+  }
+}
+```
+
+#### 3. **Sass Actualizado**
+```json
+{
+  "sass": "^1.77.8" // Actualizado desde ^1.70.0
+}
+```
+
+### 🔄 **Aplicar Cambios**
+```bash
+yarn install          # Actualiza Sass
+rm -rf node_modules/.vite  # Limpia caché
+yarn test            # ✅ Sin warnings
+```
+
+---
+
 ## ❌ Error: "Undefined mixin" en Componentes Vue
 
 ### Problema
