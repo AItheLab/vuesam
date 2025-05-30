@@ -85,9 +85,6 @@ const handleClick = (event: MouseEvent) => {
 </script>
 
 <style lang="scss" scoped>
-@use '@/styles/variables' as *;
-@use '@/styles/mixins' as *;
-
 .sam-button {
   @include sam-component;
   @include sam-button-base;

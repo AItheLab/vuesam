@@ -1,6 +1,7 @@
-// Design System Variables based on the dark theme
-// Colors
-$sam-colors: (
+// Design System Variables - Dual Theme System
+
+// Base Colors (Theme Independent)
+$sam-base-colors: (
   // Primary colors
   'primary': #3b82f6,
   'primary-light': #60a5fa,
@@ -28,25 +29,6 @@ $sam-colors: (
   'info-light': #60a5fa,
   'info-dark': #2563eb,
   
-  // Neutral colors (dark theme)
-  'background': #1a1a1a,
-  'background-secondary': #262626,
-  'background-tertiary': #404040,
-  
-  'surface': #262626,
-  'surface-variant': #404040,
-  
-  'text-primary': #f3f4f6,
-  'text-secondary': #9ca3af,
-  'text-disabled': #6b7280,
-  'text-hint': #4b5563,
-  
-  'border': #374151,
-  'border-light': #4b5563,
-  'border-dark': #1f2937,
-  
-  'divider': #374151,
-  
   // Special colors from the design
   'accent-orange': #fb923c,
   'accent-green': #22c55e,
@@ -54,6 +36,57 @@ $sam-colors: (
   'accent-pink': #ec4899,
   'accent-yellow': #facc15,
 );
+
+// Dark Theme Colors
+$sam-colors-dark: (
+  // Background colors
+  'background': #1a1a1a,
+  'background-secondary': #262626,
+  'background-tertiary': #404040,
+  
+  'surface': #262626,
+  'surface-variant': #404040,
+  
+  // Text colors
+  'text-primary': #f3f4f6,
+  'text-secondary': #9ca3af,
+  'text-disabled': #6b7280,
+  'text-hint': #4b5563,
+  
+  // Border colors
+  'border': #374151,
+  'border-light': #4b5563,
+  'border-dark': #1f2937,
+  
+  'divider': #374151,
+);
+
+// Light Theme Colors
+$sam-colors-light: (
+  // Background colors
+  'background': #ffffff,
+  'background-secondary': #f8fafc,
+  'background-tertiary': #f1f5f9,
+  
+  'surface': #ffffff,
+  'surface-variant': #f8fafc,
+  
+  // Text colors
+  'text-primary': #1e293b,
+  'text-secondary': #64748b,
+  'text-disabled': #94a3b8,
+  'text-hint': #cbd5e1,
+  
+  // Border colors
+  'border': #e2e8f0,
+  'border-light': #cbd5e1,
+  'border-dark': #94a3b8,
+  
+  'divider': #e2e8f0,
+);
+
+// Merge base colors with theme colors
+$sam-colors: map-merge($sam-base-colors, $sam-colors-dark);
 
 // Spacing
 $sam-spacing: (
@@ -110,8 +143,8 @@ $sam-radius: (
   'full': 9999px,
 );
 
-// Shadows (adapted for dark theme)
-$sam-shadows: (
+// Shadows
+$sam-shadows-dark: (
   'none': none,
   'sm': '0 1px 2px 0 rgba(0, 0, 0, 0.5)',
   'base': '0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px 0 rgba(0, 0, 0, 0.4)',
@@ -120,6 +153,18 @@ $sam-shadows: (
   'xl': '0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4)',
   '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.6)',
 );
+
+$sam-shadows-light: (
+  'none': none,
+  'sm': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+  'base': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+  'md': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+  'lg': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+  'xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+  '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+);
+
+$sam-shadows: $sam-shadows-dark;
 
 // Z-index
 $sam-z-index: (
@@ -173,30 +218,56 @@ $sam-breakpoints: (
   @return map-get($sam-shadows, $name);
 }
 
-// CSS Custom Properties
+// Theme System - CSS Custom Properties
 :root {
-  // Colors
-  @each $name, $value in $sam-colors {
+  // Base colors (shared between themes)
+  @each $name, $value in $sam-base-colors {
     --sam-color-#{$name}: #{$value};
   }
   
-  // Spacing
+  // Other variables (shared)
   @each $name, $value in $sam-spacing {
     --sam-spacing-#{$name}: #{$value};
   }
   
-  // Font sizes
   @each $name, $value in $sam-font-sizes {
     --sam-font-size-#{$name}: #{$value};
   }
   
-  // Border radius
   @each $name, $value in $sam-radius {
     --sam-radius-#{$name}: #{$value};
   }
   
-  // Transitions
   @each $name, $value in $sam-transitions {
     --sam-transition-#{$name}: #{$value};
+  }
+  
+  // Default to dark theme
+  @each $name, $value in $sam-colors-dark {
+    --sam-color-#{$name}: #{$value};
+  }
+  
+  @each $name, $value in $sam-shadows-dark {
+    --sam-shadow-#{$name}: #{$value};
+  }
+}
+
+[data-theme="dark"] {
+  @each $name, $value in $sam-colors-dark {
+    --sam-color-#{$name}: #{$value};
+  }
+  
+  @each $name, $value in $sam-shadows-dark {
+    --sam-shadow-#{$name}: #{$value};
+  }
+}
+
+[data-theme="light"] {
+  @each $name, $value in $sam-colors-light {
+    --sam-color-#{$name}: #{$value};
+  }
+  
+  @each $name, $value in $sam-shadows-light {
+    --sam-shadow-#{$name}: #{$value};
   }
 }

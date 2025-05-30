@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import SamButton from './SamButton.vue'
 import type { SamButtonProps } from '@/types/components'
 

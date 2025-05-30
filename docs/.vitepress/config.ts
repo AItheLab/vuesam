@@ -64,13 +64,17 @@ export default defineConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@import "../src/styles/_globals.scss";`
+          api: 'modern-compiler', // Use modern Sass API
+          additionalData: `
+            @use "@/styles/variables" as *;
+            @use "@/styles/mixins" as *;
+          `
         },
       },
     },
     resolve: {
       alias: {
-        '@': resolve(__dirname, '../src'),
+        '@': resolve(__dirname, '../../src'), // Correct path from docs/.vitepress to src
       },
     },
   }

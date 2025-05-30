@@ -162,9 +162,6 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-@use '@/styles/variables' as *;
-@use '@/styles/mixins' as *;
-
 .sam-text-field {
   @include sam-component;
   position: relative;
@@ -176,12 +173,12 @@ defineExpose({
     margin-bottom: sam-spacing('xs');
     font-size: sam-font-size('sm');
     font-weight: map-get($sam-font-weights, 'medium');
-    color: sam-color('text-secondary');
+    color: var(--sam-color-text-secondary);
     @include sam-transition((color));
   }
   
   &__required {
-    color: sam-color('error');
+    color: var(--sam-color-error);
     margin-left: 2px;
   }
   
@@ -227,7 +224,7 @@ defineExpose({
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: sam-color('text-secondary');
+    color: var(--sam-color-text-secondary);
     @include sam-transition((color));
     
     &--prepend {
@@ -243,7 +240,7 @@ defineExpose({
       cursor: pointer;
       
       &:hover {
-        color: sam-color('text-primary');
+        color: var(--sam-color-text-primary);
       }
       
       svg {
@@ -279,15 +276,15 @@ defineExpose({
   }
   
   &__hint {
-    color: sam-color('text-secondary');
+    color: var(--sam-color-text-secondary);
   }
   
   &__error {
-    color: sam-color('error');
+    color: var(--sam-color-error);
   }
   
   &__counter {
-    color: sam-color('text-secondary');
+    color: var(--sam-color-text-secondary);
     margin-left: auto;
   }
   
@@ -331,15 +328,15 @@ defineExpose({
     .sam-text-field__input {
       border-radius: sam-radius('base') sam-radius('base') 0 0;
       border-bottom-width: 2px;
-      background-color: sam-color('background-secondary');
+      background-color: var(--sam-color-background-secondary);
       
       &:hover:not(:disabled):not(:focus) {
-        background-color: sam-color('background-tertiary');
+        background-color: var(--sam-color-background-tertiary);
       }
       
       &:focus {
-        background-color: sam-color('background-tertiary');
-        border-bottom-color: sam-color('primary');
+        background-color: var(--sam-color-background-tertiary);
+        border-bottom-color: var(--sam-color-primary);
       }
     }
   }
@@ -348,18 +345,18 @@ defineExpose({
     .sam-text-field__input {
       border-radius: 0;
       border: none;
-      border-bottom: 1px solid sam-color('border');
+      border-bottom: 1px solid var(--sam-color-border);
       background-color: transparent;
       padding-left: 0;
       padding-right: 0;
       
       &:hover:not(:disabled):not(:focus) {
-        border-bottom-color: sam-color('border-light');
+        border-bottom-color: var(--sam-color-border-light);
       }
       
       &:focus {
         border-bottom-width: 2px;
-        border-bottom-color: sam-color('primary');
+        border-bottom-color: var(--sam-color-primary);
         margin-bottom: -1px;
       }
     }
@@ -376,21 +373,21 @@ defineExpose({
   // States
   &--focused {
     .sam-text-field__label {
-      color: sam-color('primary');
+      color: var(--sam-color-primary);
     }
   }
   
   &--error {
     .sam-text-field__input {
-      border-color: sam-color('error') !important;
+      border-color: var(--sam-color-error) !important;
       
       &:focus {
-        outline-color: sam-color('error');
+        outline-color: var(--sam-color-error);
       }
     }
     
     .sam-text-field__label {
-      color: sam-color('error');
+      color: var(--sam-color-error);
     }
   }
 }

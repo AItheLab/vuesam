@@ -4,7 +4,10 @@ import dts from 'vite-plugin-dts'
 import { resolve } from 'path'
 
 // SCSS global imports para componentes Vue
-const scssAdditionalData = '@import "styles/_globals.scss";'
+const scssAdditionalData = `
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+`
 
 export default defineConfig(({ mode }) => {
   // Development mode for playground

@@ -1,0 +1,25 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": [
+      "vite/client",
+      "@storybook/vue3", 
+      "@storybook/addon-themes",
+      "vue"
+    ],
+    "baseUrl": "..",
+    "paths": {
+      "@/*": ["../src/*"]
+    }
+  },
+  "include": [
+    "../src/**/*.ts",
+    "../src/**/*.vue",
+    "../src/**/*.d.ts",
+    "./*.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../dist"
+  ]
+}
